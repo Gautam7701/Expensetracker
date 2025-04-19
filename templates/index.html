@@ -1,0 +1,69 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Expense Tracker</title>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<body>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+
+        <form method="POST" action="/add">
+            <input type="number" name="amount" step="0.01" placeholder="Amount (₹)" required>
+            <input type="text" name="category" placeholder="Category" required>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <h2>Total Spent: ₹{{ total }}</h2>
+
+        <ul>
+            {% for expense in expenses %}
+                <li>₹{{ expense.amount }} - {{ expense.category }} ({{ expense.date }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>
+ -->
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="welcome-message">
+        <h1>Welcome to Your Personal Expense Tracker!</h1>
+        <p>✨ Track your spending, stay on top of your budget, and manage your finances effortlessly. Add your expenses and watch how you’re doing. It’s time to take control of your money, one expense at a time! 💰</p>
+    </div>
+    <div class="container">
+        <h1>💰 Expense Tracker</h1>
+
+        <form method="POST" action="/add">
+            <input type="number" name="amount" step="0.01" placeholder="Amount (₹)" required>
+            <input type="text" name="category" placeholder="Category" required>
+            <button type="submit">Add Expense</button>
+        </form>
+
+        <h2>Total Spent: ₹{{ total }}</h2>
+
+        <ul>
+            {% for expense in expenses %}
+                <li>
+                    ₹{{ expense.amount }} - {{ expense.category }} ({{ expense.date }})
+                    <!-- Add delete button for each expense -->
+                    <form method="POST" action="/delete/{{ loop.index0 }}" style="display:inline;">
+                        <button type="submit" class="deltebtn">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
